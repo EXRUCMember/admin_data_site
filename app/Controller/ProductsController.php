@@ -15,4 +15,66 @@ class ProductsController extends AppController {
         }
         $this->set('product', $product);
     }
+    public function add() {
+        if ($this->request->is('post')) {
+            $this->Product->create();
+            $this->request->data['Product']['user_id'] = $this->Auth->user('id');
+            if ($this->Product->save($this->request->data)) {
+                $this->Session->setFlash(__('Your product has been saved.'));
+                return $this->redirect(array('action' => 'index'));
+            }
+            $this->Session->setFlash(__('Unable to add your product.'));
+        }
+    }
+    public function edit($id = null) {
+        if (!$id) {
+            throw new NotFoundException(__('Invalid Product'));
+        }
+
+        $product = $this->Product->findById($id);
+        if (!$product) {
+            throw new NotFoundException(__('Invalid post'));
+        }
+
+        if ($this->request->is(array('post', 'put'))) {
+            $this->Product->id = $id;
+            if ($this->Product->save($this->request->data)) {
+                $this->Session->setFlash(__('Your product has been updated.'));
+                return $this->redirect(array('action' => 'index'));
+            }
+            $this->Session->setFlash(__('Unable to update your post.'));
+        }
+
+        if (!$this->request->data) {
+            $this->request->data = $product;
+        }
+    }
+    public function delete($id) {
+        if ($this->request->is('get')) {
+            throw new MethodNotAllowedException();
+        }
+
+        if ($this->Product->delete($id)) {
+            $this->Session->setFlash(
+                __('The product with id: %s has been deleted.', h($id))
+            );
+            return $this->redirect(array('action' => 'index'));
+        }
+    }
+    public function isAuthorized($user) {
+        // All registered users can add posts
+        if ($this->action === 'add') {
+            return true;
+        }
+
+        // The owner of a post can edit and delete it
+        if (in_array($this->action, array('edit', 'delete'))) {
+            $productId = (int) $this->request->params['pass'][0];
+            if ($this->Product->isOwnedBy($productId, $user['id'])) {
+                return true;
+            }
+        }
+
+        return parent::isAuthorized($user);
+    }
 }
