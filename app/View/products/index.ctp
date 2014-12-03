@@ -1,4 +1,8 @@
 <h1>Blog posts</h1>
+<?php echo $this->Html->link(
+    'Logout',
+    array('controller' => 'users', 'action' => 'logout')
+); ?>
 <table>
     <tr>
         <th>Id</th>
@@ -42,4 +46,9 @@
 <?php echo $this->Html->link(
     'Add Product',
     array('controller' => 'products', 'action' => 'add')
+); ?>
+
+<?php echo $this->Html->link(
+    'Add Users',
+    array('controller' => 'users', 'action' => 'add')
 ); ?>

@@ -1,12 +1,18 @@
 <?php
 class ProductsController extends AppController {
-    public $uses = array('Product', 'Category');
+    public $uses = array('Product', 'Category','User');
     public $helpers = array('Html', 'Form');
     public function index() {
-        //$this->set('products', $this->Product->find('all'));
-        $data = $this->Product->query("SELECT * FROM products INNER JOIN categories ON cate_id=categories.id");
-       // pr($data);
-        $this->set('products', $data);
+        if ($this->Auth->login()) {
+            //$this->set('products', $this->Product->find('all'));
+            $data = $this->Product->query("SELECT * FROM products INNER JOIN categories ON cate_id=categories.id");
+            // pr($data);
+            $this->set('products', $data);
+        }
+        else{
+            return $this->redirect(array('controller' => 'users','action' => 'login'));
+        }
+
     }
     public function view($id = null) {
         if (!$id) {
