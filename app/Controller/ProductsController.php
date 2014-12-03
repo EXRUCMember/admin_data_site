@@ -1,8 +1,12 @@
 <?php
 class ProductsController extends AppController {
+    public $uses = array('Product', 'Category');
     public $helpers = array('Html', 'Form');
     public function index() {
-        $this->set('products', $this->Product->find('all'));
+        //$this->set('products', $this->Product->find('all'));
+        $data = $this->Product->query("SELECT * FROM products INNER JOIN categories ON cate_id=categories.id");
+       // pr($data);
+        $this->set('products', $data);
     }
     public function view($id = null) {
         if (!$id) {
@@ -16,9 +20,11 @@ class ProductsController extends AppController {
         $this->set('product', $product);
     }
     public function add() {
+        $this->set('categorys', $this->Category->find('all'));
         if ($this->request->is('post')) {
             $this->Product->create();
             $this->request->data['Product']['user_id'] = $this->Auth->user('id');
+           // $this->request->data['Product']['cate_id'] = 2;
             if ($this->Product->save($this->request->data)) {
                 $this->Session->setFlash(__('Your product has been saved.'));
                 return $this->redirect(array('action' => 'index'));

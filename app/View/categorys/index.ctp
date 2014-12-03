@@ -33,8 +33,8 @@
                                         );
                      ?>
          </td>
-
     </tr>
     <?php endforeach; ?>
     <?php unset($category); ?>
 </table>
+<?php echo $this->Html->Link('add Category', array('action'=>'add'))  ?>

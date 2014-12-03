@@ -10,17 +10,18 @@
 
     <?php foreach ($products as $product): ?>
     <tr>
-        <td><?php echo $product['Product']['id']; ?></td>
+        <td><?php echo $product['products']['id']; ?></td>
         <td>
-            <?php  echo $this->Html->link($product['Product']['product_name'],array('controller' => 'products', 'action' => 'view', $product['Product']['id']));
-            //echo $product['Product']['product_name']
+            <?php  echo $this->Html->link($product['products']['product_name'],array('controller' => 'products', 'action' => 'view', $product['products']['id']));
+          //  echo $product['Product']['product_name'];
+
             ?>
         </td>
         <td>
                     <?php
                         echo $this->Html->link(
                             'Edit',
-                            array('action' => 'edit', $product['Product']['id'])
+                            array('action' => 'edit', $product['products']['id'])
                         );
                     ?>
          </td>
@@ -28,15 +29,15 @@
                   <?php
                                 echo $this->Form->postLink(
                                     'Delete',
-                                    array('action' => 'delete', $product['Product']['id']),
+                                    array('action' => 'delete', $product['products']['id']),
                                     array('confirm' => 'Are you sure?')
                                 );
                             ?>
          </td>
-        <td><?php echo $product['Product']['created']; ?></td>
+        <td><?php echo $product['products']['created']; ?></td>
     </tr>
     <?php endforeach; ?>
-    <?php unset($product); ?>
+
 </table>
 <?php echo $this->Html->link(
     'Add Product',
