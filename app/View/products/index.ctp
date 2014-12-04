@@ -9,6 +9,7 @@
         <?php endforeach; ?>
         <?php echo $this->Html->link('Add Category',array('controller' => 'categorys', 'action' => 'add')); ?>
 
+<?php echo '<p></>';?>
 <h1>This is All Products List</h1>
 <table>
     <tr>

@@ -10,6 +10,7 @@
 
         <?php endforeach; ?>
         <?php echo $this->Html->link('Add Category',array('controller' => 'categorys', 'action' => 'add')); ?>
+        <?php echo '<p></>';?>
  <h1>This is <?php $test = $this->Session->read('category.Name');
    echo $test[0]['categories']['category_name'];
  //pr($test);
