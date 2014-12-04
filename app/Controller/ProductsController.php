@@ -21,8 +21,10 @@ class ProductsController extends AppController {
     }
     public function view_category($id=null){
         $dataCategory = $this->Product->query("SELECT * FROM products WHERE cate_id=".$id);
-      // $dataCategory = $this->Category->findByID($id);
+           $categoryName = $this->Category->query("SELECT categories.category_name FROM categories WHERE id=".$id);
         $this->set('products', $dataCategory);
+       // pr($categoryName);
+        $this->Session->write('category.Name', $categoryName);
         $this->set('categorys', $this->Category->find('all'));
     }
     public function view($id = null) {
