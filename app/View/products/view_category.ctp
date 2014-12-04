@@ -1,15 +1,16 @@
 <h1>Products List</h1>
 <?php echo $this->Html->link('All Products',array('controller' => 'products', 'action' => 'index'));?>
  <?php foreach($categorys as $category):  ?>
-         <th> <?php
-                echo '     |     ';
-                echo $this->Html->link($category['Category']['category_name'],array('controller' => 'products', 'action' => 'view_category', $category['Category']['id']));
-                echo '     |     ';
-                ?></th>
+
+        <th> <?php
+        echo '     |     ';
+        echo $this->Html->link($category['Category']['category_name'],array('controller' => 'products', 'action' => 'view_category', $category['Category']['id']));
+        echo '     |     ';
+        ?></th>
+
         <?php endforeach; ?>
         <?php echo $this->Html->link('Add Category',array('controller' => 'categorys', 'action' => 'add')); ?>
-
-<h1>This is All Products List</h1>
+ <h1>This is <?php echo $product['categorys']['category_name']  ?></h1>
 <table>
     <tr>
 

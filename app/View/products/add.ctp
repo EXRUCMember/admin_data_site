@@ -11,14 +11,14 @@
 <?php $option = array_combine($cate_id,$cate_name); ?>
 
 <?php
-echo $this->Form->create('Product');
+echo $this->Form->create('Product',array('type' => 'file'));
 echo $this->Form->input('product_name');
 echo $this->Form->input('product_description', array('rows' => '3'));
 echo $this->Form->input('product_price');
 echo $this->Form->input('product_discount');
 echo $this->Form->input('product_color');
 echo $this->Form->input('product_size');
-echo $this->Form->input('product_image');
+echo $this->Form->input('product_image',array('type' => 'file'));
 echo $this->Form->input('cate_id', array(
             'options' => $option
         ));
