@@ -9,8 +9,18 @@
         ?></th>
 
         <?php endforeach; ?>
-        <?php echo $this->Html->link('Add Category',array('controller' => 'categorys', 'action' => 'add')); ?>
-        <?php echo '<p></>';?>
+             <div style="float:right;">
+                <?php echo $this->Html->link('Add/Edit/Delete Category',array('controller' => 'categorys', 'action' => 'index')); ?>
+                <?php echo '<p></p>';?>
+                <?php echo $this->Html->link(
+                    'Add Product',
+                    array('controller' => 'products', 'action' => 'add')
+                ); ?>
+
+                </div>
+
+        <?php echo '<p></p>';?>
+        <div style="clear:both;"></div>
  <h1>This is <?php $test = $this->Session->read('category.Name');
    echo $test[0]['categories']['category_name'];
  //pr($test);
@@ -58,11 +68,7 @@
     <?php endforeach; ?>
 
 </table>
-<?php echo $this->Html->link(
-    'Add Product',
-    array('controller' => 'products', 'action' => 'add')
-); ?>
-<?php echo '<p></>';?>
+
 <?php echo '<p></>';?>
 <?php echo $this->Html->link(
     'Add Users',

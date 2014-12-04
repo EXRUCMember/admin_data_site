@@ -38,3 +38,5 @@
     <?php unset($category); ?>
 </table>
 <?php echo $this->Html->Link('add Category', array('action'=>'add'))  ?>
+<?php echo '<p></p>';?>
+<?php echo $this->Html->Link('Go to ALL Product List', array('controller'=>'products','action'=>'index'));?>
