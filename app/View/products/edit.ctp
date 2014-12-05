@@ -7,7 +7,7 @@ echo $this->Form->input('product_price');
 echo $this->Form->input('product_discount');
 echo $this->Form->input('product_color');
 echo $this->Form->input('product_size');
-echo $this->Form->input('product_image');
+//echo $this->Form->input('product_image');
 // need CATEGORIES
 echo $this->Form->input('id', array('type' => 'hidden'));
 echo $this->Form->end('Save Product');
